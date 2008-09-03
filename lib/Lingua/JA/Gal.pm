@@ -7,15 +7,10 @@ use utf8;
 use File::ShareDir 'module_file';
 use Unicode::Japanese;
 
-use base 'Exporter';
-our @EXPORT_OK = qw( text2gal );
-
-our $Lexicon = do {
+our $Lexicon ||= do {
     my $file = module_file(__PACKAGE__, 'lexicon.pl');
     do $file;
 };
-
-*text2gal = \&gal;
 
 sub gal {
     my $class   = shift if $_[0] eq __PACKAGE__; ## no critic
@@ -78,11 +73,11 @@ on the cellphone mail, made by Japanese teenage girls.
 
   Lingua::JA::Gal->gal("こんにちは");
 
-%options can take
+C<\%options> can take
 
 =over 4
 
-=item rate
+=item C<rate>
 
 for converting rate. default is 100.
 
@@ -90,7 +85,7 @@ for converting rate. default is 100.
   Lingua::JA::Gal->gal($text, { rate =>  50 }); # harf
   Lingua::JA::Gal->gal($text, { rate =>   0 }); # nothing
 
-=item callback
+=item C<callback>
 
 if you want to do your own way.
 
@@ -108,14 +103,13 @@ if you want to do your own way.
 
 =back
 
-=item text2gal( $text, [ \%options ] )
-
-is alias to gal(), exportable.
-
-  use Lingua::JA::Gal qw( text2gal );
-  print text2gal("こんにちは");
-
 =back
+
+=head1 SEE ALSO
+
+L<http://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
+
+L<http://coderepos.org/share/browser/lang/perl/Lingua-JA-Gal> (repository)
 
 =head1 AUTHOR
 
@@ -125,11 +119,5 @@ Naoki Tomita E<lt>tomita@cpan.orgE<gt>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
-
-=head1 SEE ALSO
-
-L<http://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
-
-L<http://coderepos.org/share/browser/lang/perl/Lingua-JA-Gal> (repository)
 
 =cut
