@@ -1,7 +1,7 @@
 package Lingua::JA::Gal;
 use strict;
 use warnings;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use utf8;
 use File::ShareDir 'module_file';
