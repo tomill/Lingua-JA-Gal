@@ -82,7 +82,7 @@ C<\%options> can take
 for converting rate. default is 100.
 
   Lingua::JA::Gal->gal($text, { rate => 100 }); # full(default)
-  Lingua::JA::Gal->gal($text, { rate =>  50 }); # harf
+  Lingua::JA::Gal->gal($text, { rate =>  50 }); # half
   Lingua::JA::Gal->gal($text, { rate =>   0 }); # nothing
 
 =item C<callback>
