@@ -26,7 +26,7 @@ that was popular with Japanese teenage girls in the early 2000s.
 
 - `rate`
 
-    for converting rate. default is 100.
+    for converting rate. default is 100 (full).
 
         Lingua::JA::Gal->gal($text, { rate => 100 }); # full(default)
         Lingua::JA::Gal->gal($text, { rate =>  50 }); # half
@@ -47,6 +47,16 @@ that was popular with Japanese teenage girls in the early 2000s.
                 return $char;
             }
         });
+
+# EXPORT
+
+no exports by default.
+
+## gal
+
+    use Lingua::JA::Gal qw/gal/;
+
+    print gal("...");
 
 # AUTHOR
 

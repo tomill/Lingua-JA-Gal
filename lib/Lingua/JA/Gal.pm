@@ -4,8 +4,11 @@ use warnings;
 use utf8;
 our $VERSION = '0.02';
 
+use Exporter 'import';
 use File::ShareDir 'dist_file';
 use Unicode::Japanese;
+
+our @EXPORT_OK = qw/gal/;
 
 our $Lexicon ||= do {
     my $file = dist_file('Lingua-JA-Gal', 'lexicon.pl');
@@ -77,7 +80,7 @@ L<https://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
 
 =item C<rate>
 
-for converting rate. default is 100.
+for converting rate. default is 100 (full).
 
   Lingua::JA::Gal->gal($text, { rate => 100 }); # full(default)
   Lingua::JA::Gal->gal($text, { rate =>  50 }); # half
@@ -99,6 +102,16 @@ if you want to do your own gal way.
   });
 
 =back
+
+=head1 EXPORT
+
+no exports by default.
+
+=head2 gal
+
+  use Lingua::JA::Gal qw/gal/;
+
+  print gal("...");
 
 =head1 AUTHOR
 
