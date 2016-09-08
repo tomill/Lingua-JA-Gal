@@ -19,11 +19,11 @@ sub gal {
     
     $options->{rate} = 100 if not defined $options->{rate};
      
-    $text =~ s{(.)}{ gal_char($1, $options) }ge;
+    $text =~ s{(.)}{ _gal_char($1, $options) }ge;
     $text;
 }
 
-sub gal_char {
+sub _gal_char {
     my ($char, $options) = @_;
      
     my $suggestions = do {
@@ -108,5 +108,7 @@ Naoki Tomita E<lt>tomita@cpan.orgE<gt>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
+
+=for stopwords 2000s
 
 =cut
