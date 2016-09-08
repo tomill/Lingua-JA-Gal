@@ -2,6 +2,10 @@ Revision history for Perl extension Lingua::JA::Gal
 
 {{$NEXT}}
 
+0.03 2016-09-08T10:20:12Z
+        - re-packaged, fix Makefile probrems.
+        - now gal() can exportable.
+
 0.02  Wed Sep  3 23:55:09 JST 2008
         - first CPAN release
 
