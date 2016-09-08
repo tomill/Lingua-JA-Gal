@@ -1,14 +1,14 @@
 package Lingua::JA::Gal;
 use strict;
 use warnings;
+use utf8;
 our $VERSION = '0.02';
 
-use utf8;
-use File::ShareDir 'module_file';
+use File::ShareDir 'dist_file';
 use Unicode::Japanese;
 
 our $Lexicon ||= do {
-    my $file = module_file(__PACKAGE__, 'lexicon.pl');
+    my $file = dist_file('Lingua-JA-Gal', 'lexicon.pl');
     do $file;
 };
 

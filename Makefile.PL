@@ -8,7 +8,7 @@ requires 'Unicode::Japanese';
 
 test_requires 'Test::More';
 
-install_share qw( module Lingua::JA::Gal ), 'share';
+install_share 'share';
 auto_include;
 
 WriteAll;
