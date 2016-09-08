@@ -1,9 +1,9 @@
 use strict;
 use warnings;
+use utf8;
 use Test::More tests => 1;
 
 use Lingua::JA::Gal;
-use utf8;
 
 my $kanjionly = sub {
     my ($char, $suggestions, $options) = @_;
