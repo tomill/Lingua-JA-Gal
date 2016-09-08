@@ -1,14 +1,17 @@
 package Lingua::JA::Gal;
 use strict;
 use warnings;
+use utf8;
 our $VERSION = '0.02';
 
-use utf8;
-use File::ShareDir 'module_file';
+use Exporter 'import';
+use File::ShareDir 'dist_file';
 use Unicode::Japanese;
 
+our @EXPORT_OK = qw/gal/;
+
 our $Lexicon ||= do {
-    my $file = module_file(__PACKAGE__, 'lexicon.pl');
+    my $file = dist_file('Lingua-JA-Gal', 'lexicon.pl');
     do $file;
 };
 
@@ -19,11 +22,11 @@ sub gal {
     
     $options->{rate} = 100 if not defined $options->{rate};
      
-    $text =~ s{(.)}{ gal_char($1, $options) }ge;
+    $text =~ s{(.)}{ _gal_char($1, $options) }ge;
     $text;
 }
 
-sub gal_char {
+sub _gal_char {
     my ($char, $options) = @_;
      
     my $suggestions = do {
@@ -49,37 +52,35 @@ __END__
 
 =head1 NAME
 
-Lingua::JA::Gal - Leet speak by Japanese gals
+Lingua::JA::Gal - "ギャル文字" converter
 
 =head1 SYNOPSIS
 
-  use Lingua::JA::Gal;
   use utf8;
-   
-  $text = Lingua::JA::Gal->gal("こんにちは"); # "⊇ｗ丨ﾆちﾚ￡"
-  $text = Lingua::JA::Gal->gal("こんにちは", { rate => 50 }); # "⊇ん(ﾆちは"
+  use Lingua::JA::Gal;
+
+  $text = Lingua::JA::Gal->gal("こんにちは"); # => "⊇ｗ丨ﾆちﾚ￡"
 
 =head1 DESCRIPTION
 
-Lingua::JA::Gal converts Japanese text into "ギャル文字" style.
-It's a writing style (like L<http://en.wikipedia.org/wiki/Leet>)
-on the cellphone mail, made by Japanese teenage girls.
+"ギャル文字" (gal's alphabet) is a Japanese writing style
+that was popular with Japanese teenage girls in the early 2000s.
 
-=head1 METHODS
+L<https://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
 
-=over 4
+=head1 METHOD
 
-=item gal( $text, [ \%options ] )
+=head2 gal( $text, [ \%options ] )
 
-  Lingua::JA::Gal->gal("こんにちは");
+  Lingua::JA::Gal->gal("ギャルもじ"); # => "(ｷ〃ャlﾚ€Ｕ〃"
 
-C<\%options> can take
+=head3 OPTIONS
 
 =over 4
 
 =item C<rate>
 
-for converting rate. default is 100.
+for converting rate. default is 100 (full).
 
   Lingua::JA::Gal->gal($text, { rate => 100 }); # full(default)
   Lingua::JA::Gal->gal($text, { rate =>  50 }); # half
@@ -87,29 +88,30 @@ for converting rate. default is 100.
 
 =item C<callback>
 
-if you want to do your own way.
+if you want to do your own gal way.
 
-  my $kanjionly = sub {
+  Lingua::JA::Gal->gal($text, { callback => sub {
       my ($char, $suggestions, $options) = @_;
        
+      # 漢字のみ変換する
       if ($char =~ /p{Han}/) {
           return $suggestions->[ int(rand @$suggestions) ];
       } else {
           return $char;
       }
-  };
-  
-  Lingua::JA::Gal->gal($text, { callback => $kanjionly }); # 漢字のみ
+  });
 
 =back
 
-=back
+=head1 EXPORT
 
-=head1 SEE ALSO
+no exports by default.
 
-L<http://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
+=head2 gal
 
-L<http://coderepos.org/share/browser/lang/perl/Lingua-JA-Gal> (repository)
+  use Lingua::JA::Gal qw/gal/;
+
+  print gal("...");
 
 =head1 AUTHOR
 
@@ -119,5 +121,7 @@ Naoki Tomita E<lt>tomita@cpan.orgE<gt>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
+
+=for stopwords 2000s
 
 =cut

@@ -1,0 +1,16 @@
+.*
+!.travis.yml
+!.gitignore
+/Imager-Filter-Bakumatsu-*
+/.build
+/_build_params
+/Build
+/Build.bat
+!Build/
+blib/
+MYMETA.*
+META.*
+!META.json
+!LICENSE
+minil.toml
+/Lingua-JA-Gal-*

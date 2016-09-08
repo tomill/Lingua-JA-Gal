@@ -1,9 +1,9 @@
 use strict;
 use warnings;
+use utf8;
 use Test::More tests => 4;
 
 use Lingua::JA::Gal;
-use utf8;
 
 is( Lingua::JA::Gal->gal("ひふほみ"), "ひ,ζ,ﾚまゐ" );
 is( Lingua::JA::Gal->gal("ｲｼａ"), "ィｼ＠" );
