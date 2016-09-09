@@ -68,6 +68,8 @@ that was popular with Japanese teenage girls in the early 2000s.
 
 L<https://ja.wikipedia.org/wiki/%E3%82%AE%E3%83%A3%E3%83%AB%E6%96%87%E5%AD%97>
 
+You can test this module here: L<http://gal.koneta.org/>
+
 =head1 METHOD
 
 =head2 gal( $text, [ \%options ] )
